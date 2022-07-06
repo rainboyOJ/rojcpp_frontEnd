@@ -1,7 +1,7 @@
 <script setup>
 </script>
 <template>
-  <div class="Card">
+  <div class="Card bg-white border">
     <div class="CardHeader">
       <solt name="header"></solt>
     </div>
