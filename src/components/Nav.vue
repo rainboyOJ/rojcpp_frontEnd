@@ -20,15 +20,19 @@ const linkIconClass = ref("w-7 h-7")
           <home-icon :class="linkIconClass" />主页
         </router-link>
 
-        <router-link to="/" class="flex justify-center items-center px-5">
+        <router-link to="/problem" class="flex justify-center items-center px-5">
           <ClipboardListIcon :class="linkIconClass" />题目
         </router-link>
 
-        <router-link to="/" class="flex justify-center items-center px-5">
+        <router-link to="/submission" class="flex justify-center items-center px-5">
+          <ClipboardListIcon :class="linkIconClass" />提交
+        </router-link>
+
+        <router-link to="/rank" class="flex justify-center items-center px-5">
           <ChartBarIcon :class="linkIconClass"></ChartBarIcon>排名
         </router-link>
 
-        <router-link to="/" class="flex justify-center items-center px-5">
+        <router-link to="/about" class="flex justify-center items-center px-5">
           <ChatAltIcon :class="linkIconClass" />关于
         </router-link>
       </div>

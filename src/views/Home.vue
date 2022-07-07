@@ -8,7 +8,7 @@ import Footer from '@/components/Footer.vue'
 <template>
   <div class="bg-gray-50">
     <Nav></Nav>
-    <div>
+    <div class="xl:w-xl mx-auto">
       <router-view></router-view>
     </div>
     <Footer></Footer>
