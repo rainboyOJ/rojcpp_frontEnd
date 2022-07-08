@@ -1,30 +1,53 @@
 <template>
-  <div>  <!-- table container -->
+  <div class="code-preview my-8 bg-gradient-to-r bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-hidden " >  <!-- table container -->
     <div v-if="title"> <!-- table title -->
       {{title}}
     </div><!-- table title end -->
-    <div> <!-- table body -->
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg"> <!-- table body -->
       <div v-if="isLoading"> <!-- loading wrapping -->
         <div>
           <span>Loading...</span>
         </div>
+      </div> <!-- loading wrapping -->
 
-        <table
-          class=""
+      <table
+          class="w-full text-xl text-left text-gray-500 dark:text-gray-400"
           ref="localTable"
           >
 
-          <thead>
-            <th
-              v-for="(col,index) in columns"
-              :key="index"
-              >
-              {{col}}
-            </th>
+          <thead class="text-3xl font-bold text-gray-900 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b" >
+            <tr>
+                <th
+                class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                v-for="(col,index) in columns"
+                :key="index"
+                >
+                {{col.label}}
+                </th>
+            </tr>
           </thead>
+          <tbody v-if="rows.length > 0">
+              <tr 
+                  v-for= "(row,index) in rows"
+                  :key="index"
+                  class="text-2xl bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-700"
+
+                  @click="$emit('row-clicked',row)"
+                  >
+                  <td 
+                      v-for="(col,j) in columns"
+                      :key = "j"
+                      class="px-6 py-4 font-medium"
+                      >
+                      <div v-if="slots[col.field]">
+                          <slot :name="col.field" :value="row"></slot>
+                      </div>
+                      <span v-else> {{ row[col.field]}}</span>
+                  </td>
+              </tr>
+          </tbody>
 
         </table>
-      </div> <!-- loading wrapping -->
     </div> <!-- table body -->
   </div><!-- table container end -->
 
@@ -112,6 +135,10 @@ export default defineComponent({
     },
   },
   setup(props,{emit,slots}) {
+
+      return {
+          slots
+      }
 
   },
 })
