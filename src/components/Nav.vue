@@ -20,7 +20,7 @@ const linkIconClass = ref("w-7 h-7")
           <home-icon :class="linkIconClass" />主页
         </router-link>
 
-        <router-link to="/problem" class="flex justify-center items-center px-5">
+        <router-link to="/problemlist" class="flex justify-center items-center px-5">
           <ClipboardListIcon :class="linkIconClass" />题目
         </router-link>
 
