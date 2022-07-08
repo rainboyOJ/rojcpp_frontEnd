@@ -53,8 +53,9 @@
 
         </table>
 
+
       <pagenation
-          :links= "links"
+          :links= "pagenation"
       ></pagenation>
 
     </div> <!-- table body -->

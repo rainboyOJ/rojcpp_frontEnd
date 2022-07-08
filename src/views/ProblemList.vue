@@ -1,11 +1,15 @@
 <script setup>
-import { ref ,reactive,computed} from 'vue'
+import { ref ,reactive,computed,watch} from 'vue'
 import {page} from '@/utils/page'
+import {useRoute} from 'vue-router'
 import myTable from '@/components/Table.vue'
 
+const route = useRoute()
 let nowPage = ref(4)
 
+
 const pagenation = computed( ()=> page(100,nowPage.value,6,"/problems"))
+
 
 const table = reactive(
     {
@@ -48,6 +52,8 @@ const table = reactive(
         ]
     }
 )
+
+watch( ()=>route.params.id, newId => nowPage.value = parseInt(newId))
 
 </script>
 <template>
