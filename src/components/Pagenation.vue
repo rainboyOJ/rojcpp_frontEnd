@@ -19,8 +19,11 @@
                 v-if="!link.disabled"
                 :to="link.link"
                 class="pagenation-item"
+                :class=" link.current ? 'bg-slate-200 text-blue-500 font-semibold' : '' "
                 >
-                {{link.name}}
+                {{ link.name}}
+
+
             </router-link>
             <span v-else class="pagenation-item-disabled" >
                 <!--<DotsHorizontalIcon class="text-sm -my-1 font-thin"></DotsHorizontalIcon>-->
@@ -65,6 +68,7 @@ export default defineComponent({
                 return [];
             },
         }
+
     },
     setup() {
     }

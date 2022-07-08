@@ -4,6 +4,7 @@ interface pagenation_type {
     link:string,
     name:string,
     disabled?:boolean
+    current?:boolean //是否是当前页面
 }
 /** 
  * total : 总共页数
@@ -20,7 +21,6 @@ function page(total:number,nowPage:number,len:number,
 
     let half_len = Math.floor( len / 2);
     half_len = half_len <= 0 ? 1 : half_len; //至少是1
-    console.log(half_len)
 
     let need_right_step :number = 0;
     let need_left_step : number =  half_len;
@@ -60,6 +60,8 @@ function page(total:number,nowPage:number,len:number,
 
     // 加入起点
     pages.push({link:`${baseUrl}/${start_page}`,name:`${start_page}`})
+    if( start_page == nowPage)
+        pages[pages.length-1].current = true;
 
     if(left_point-start_page > 1){
         pages.push({link:"",name:"",disabled:true})
@@ -70,6 +72,8 @@ function page(total:number,nowPage:number,len:number,
 
     for(let i = left_point ; i <= right_point ;i++){
         pages.push({link:`${baseUrl}/${i}`,name:`${i}`})
+        if( i == nowPage)
+            pages[pages.length-1].current = true;
     }
 
     if(end_page-right_point > 1){
@@ -77,6 +81,8 @@ function page(total:number,nowPage:number,len:number,
     }
     // 加入终点
     pages.push({link:`${baseUrl}/${end_page}`,name:`${end_page}`})
+    if( end_page == nowPage)
+        pages[pages.length-1].current = true;
 
     return pages
 }
