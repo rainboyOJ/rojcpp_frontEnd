@@ -36,7 +36,7 @@ export const routes = [
         component:Problem
       },
       {
-        path:'problemlist/:id(\\d+)?',
+        path:'problems/:id(\\d+)?',
         component:ProblemList
       },
       {

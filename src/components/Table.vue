@@ -10,6 +10,10 @@
         </div>
       </div> <!-- loading wrapping -->
 
+      <pagenation
+          :links= "pagenation"
+      ></pagenation>
+
       <table
           class="w-full text-xl text-left text-gray-500 dark:text-gray-400"
           ref="localTable"
@@ -48,11 +52,17 @@
           </tbody>
 
         </table>
+
+      <pagenation
+          :links= "links"
+      ></pagenation>
+
     </div> <!-- table body -->
   </div><!-- table container end -->
 
 </template>
 <script>
+import pagenation from './Pagenation.vue'
 import {
   defineComponent,
   ref,
@@ -66,6 +76,7 @@ import {
 
 export default defineComponent({
   name:'my-table',
+    components:{pagenation},
   emits: [
     'do-search',
     'is-finished',
@@ -133,13 +144,23 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    pagenation : {
+        type: Array,
+        default : () => []
+    }
   },
   setup(props,{emit,slots}) {
-
+      const links = reactive([
+          { link:"/1" ,name:"1"},
+          { link:"/2" ,name:"2"},
+          { link:"/3" ,name:"3"},
+          { link:"/4" ,name:"4"},
+          { link:"/4" ,name:"4",disabled:true},
+      ])
       return {
+          links,
           slots
       }
-
   },
 })
 </script>

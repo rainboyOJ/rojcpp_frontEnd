@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html,body {
-  font-size: 62.5%;
+  /*font-size: 62.5%;*/
 }
 
 .container-lg-width{

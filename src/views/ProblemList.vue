@@ -1,6 +1,11 @@
 <script setup>
-import { ref ,reactive} from 'vue'
+import { ref ,reactive,computed} from 'vue'
+import {page} from '@/utils/page'
 import myTable from '@/components/Table.vue'
+
+let nowPage = ref(4)
+
+const pagenation = computed( ()=> page(100,nowPage.value,6,"/problems"))
 
 const table = reactive(
     {
@@ -52,6 +57,7 @@ const table = reactive(
         :isLoading="table.isLoading"
         :columns="table.columns"
         :rows="table.rows"
+        :pagenation="pagenation"
     >
         <template v-slot:id="data">
             <i>{{ data.value.id }}</i>
