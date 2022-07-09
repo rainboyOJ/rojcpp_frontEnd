@@ -3,13 +3,13 @@
 <template>
   <div class="Card bg-white border">
     <div class="CardHeader">
-      <solt name="header"></solt>
+      <slot name="header"></slot>
     </div>
     <div>
       <slot>No Content</slot>
     </div>
     <div>
-      <solt name="footer"></solt>
+      <slot name="footer"></slot>
     </div>
   </div>
 </template>

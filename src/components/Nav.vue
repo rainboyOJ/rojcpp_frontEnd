@@ -2,7 +2,7 @@
 import { ref, reactive } from 'vue'
 import card from '@/components/card.vue'
 
-import { BeakerIcon, ChartBarIcon, HomeIcon, ChatAltIcon, ClipboardListIcon } from '@heroicons/vue/solid'
+import { BeakerIcon, ChartBarIcon, HomeIcon, ChatAltIcon, ClipboardListIcon ,MapIcon }from '@heroicons/vue/solid'
 
 
 const linkIconClass = ref("w-7 h-7")
@@ -25,7 +25,7 @@ const linkIconClass = ref("w-7 h-7")
         </router-link>
 
         <router-link to="/submission" class="flex justify-center items-center px-5">
-          <ClipboardListIcon :class="linkIconClass" />提交
+          <MapIcon :class="linkIconClass" />提交
         </router-link>
 
         <router-link to="/rank" class="flex justify-center items-center px-5">
