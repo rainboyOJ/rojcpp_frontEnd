@@ -2,6 +2,7 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 import NotFound from './views/NotFound.vue'
 import Login from './views/Login.vue'
+import Reg from './views/Register.vue'
 
 import Index from './views/Index.vue'
 import User from './views/User.vue'
@@ -13,6 +14,7 @@ import Rank from './views/Rank.vue'
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
   { path: '/login', component: Login, meta: { title: 'Login' } },
+  { path: '/register', component: Reg, meta: { title: 'Register' } },
   { 
     path: '/',
     component: Home, 
