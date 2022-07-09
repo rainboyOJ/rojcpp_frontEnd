@@ -42,7 +42,7 @@ function page(total:number,nowPage:number,len:number,
     //向右边走
     if( nowPage + need_right_step > end_page) {
         right_point = end_page;
-        need_left_step = half_len - (left_point - nowPage);
+        need_left_step = 2*half_len - (nowPage-left_point);
     }
     else {
         right_point = nowPage + need_right_step;
@@ -68,7 +68,7 @@ function page(total:number,nowPage:number,len:number,
     }
 
     if(left_point == start_page) left_point++;
-    if(right_point == end_page) right_point++;
+    if(right_point == end_page) right_point--;
 
     for(let i = left_point ; i <= right_point ;i++){
         pages.push({link:`${baseUrl}/${i}`,name:`${i}`})
