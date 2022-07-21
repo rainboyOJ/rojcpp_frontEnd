@@ -13,40 +13,48 @@ import Rank from './views/Rank.vue'
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
-  { path: '/login', component: Login, meta: { title: 'Login' } },
-  { path: '/register', component: Reg, meta: { title: 'Register' } },
+  { path: '/login', component: Login, name:'Login',meta: { title: 'Login' } },
+  { path: '/register', component: Reg, name:'Register',meta: { title: 'Register' } },
   { 
     path: '/',
     component: Home, 
     redirect:'/index',
+    name:'Home',
     meta: { title: 'Home' },
     children: [
       {
         path:'index',
+        name:'Index',
         component:Index
       },
       {
         path:'user',
+        name:'UserInfo',
         component:User
       },
       {
         path:'submission/:id(\\d+)?',
+        name:'Submissions',
         component:Submissions
       },
       {
         path:'problem/:id(\\d+)?',
+        name:'Problem',
         component:Problem
       },
       {
         path:'problems/:id(\\d+)?',
+        name:'Problems',
         component:ProblemList
       },
       {
         path:'rank/:id(\\d+)?',
+        name:'Rank',
         component:Rank
       },
       {
         path: '/about',
+        name:'About',
         meta: { title: 'About' },
         component: About,
         // example of route level code-splitting
@@ -56,5 +64,5 @@ export const routes = [
       },
     ]
   },
-  { path: '/:path(.*)', component: NotFound },
+  { path: '/:path(.*)',name:'NotFound', component: NotFound },
 ]

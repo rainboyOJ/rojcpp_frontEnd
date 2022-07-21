@@ -1,9 +1,40 @@
 <script setup>
 import Card from '@/components/card.vue'
-import {ref,reactive} from 'vue'
-const reg_button = () =>{
-    alert("hell")
+import { useRouter } from 'vue-router'
+import {ref,reactive,toRaw} from 'vue'
+import {api} from '@/utils/axios'
+import {myalert} from '@/utils/alert'
+
+const router = useRouter()
+const reg_data = reactive({
+    username:'',
+    nickname:'',
+    password:'',
+    email:''
+})
+const repeat_password = ref('')
+
+const reg_button = async () =>{
+    let data =  toRaw(reg_data)
+    console.log( data)
+
+    api.post('/user/register',data)
+        .then(res =>{
+            if( rep.code == 0) { //功能
+                alert('注册成功,点击跳转到登录界面');
+                router.push({name:'Login'});
+            }
+            else
+                alert(rep.msg)
+        })
+        .catch(e =>{
+            console.log(e)
+            if(e.code == 'ECONNABORTED'){
+                alert('请求超时')
+            }
+        })
 }
+
 </script>
 
 <template>
@@ -22,15 +53,15 @@ const reg_button = () =>{
                      >
                      <div class="">
                          <form>
-
                              <!-- 用户名 input -->
                              <div class="mb-6 flex items-center">
                                  <label for="" class="w-40 text-xl font-semibold text-right mr-4">用户名:</label>
                                  <input
                                      type="text"
                                      class="myform-input"
-                                     id="exampleFormControlInput2"
+                                     id="username"
                                      placeholder="用户名"
+                                     v-model="reg_data.username"
                                      />
                              </div>
 
@@ -40,8 +71,21 @@ const reg_button = () =>{
                                  <input
                                      type="text"
                                      class="myform-input"
-                                     id="exampleFormControlInput2"
+                                     id="nickname"
                                      placeholder="昵称"
+                                     v-model="reg_data.nickname"
+                                     />
+                             </div>
+
+                             <!-- email input -->
+                             <div class="mb-6 flex items-center">
+                                 <label for="" class="w-40 text-xl font-semibold text-right mr-4">邮箱:</label>
+                                 <input
+                                     type="text"
+                                     class="myform-input"
+                                     id="email"
+                                     placeholder="邮箱"
+                                     v-model="reg_data.email"
                                      />
                              </div>
 
@@ -51,8 +95,9 @@ const reg_button = () =>{
                                  <input
                                      type="password"
                                      class="myform-input"
-                                     id="exampleFormControlInput2"
+                                     id="password"
                                      placeholder="密码"
+                                     v-model="reg_data.password"
                                      />
                              </div>
 
@@ -62,8 +107,9 @@ const reg_button = () =>{
                                  <input
                                      type="password"
                                      class="myform-input"
-                                     id="exampleFormControlInput2"
+                                     id="passwordRepeat"
                                      placeholder="重复密码"
+                                     v-model="repeat_password"
                                      />
                              </div>
 

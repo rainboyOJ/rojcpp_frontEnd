@@ -19,13 +19,13 @@ import Card from '@/components/card.vue'
                      <div class="">
                          <form>
 
-                             <!-- Email input -->
+                             <!-- username input -->
                              <div class="mb-6 flex items-center">
                                  <label for="" class="w-20 text-2xl font-semibold text-center">用户:</label>
                                  <input
                                      type="text"
                                      class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                     id="exampleFormControlInput2"
+                                     id="username"
                                      placeholder="Email address"
                                      />
                              </div>
@@ -36,7 +36,7 @@ import Card from '@/components/card.vue'
                                  <input
                                      type="password"
                                      class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                     id="exampleFormControlInput2"
+                                     id="password"
                                      placeholder="Password"
                                      />
                              </div>
