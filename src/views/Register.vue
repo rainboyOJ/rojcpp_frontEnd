@@ -3,7 +3,7 @@ import Card from '@/components/card.vue'
 import { useRouter } from 'vue-router'
 import {ref,reactive,toRaw} from 'vue'
 import {api} from '@/utils/axios'
-import {myalert} from '@/utils/alert'
+//import {myalert} from '@/utils/alert'
 
 const router = useRouter()
 const reg_data = reactive({
@@ -12,6 +12,7 @@ const reg_data = reactive({
     password:'',
     email:''
 })
+
 const repeat_password = ref('')
 
 const reg_button = async () =>{
@@ -26,12 +27,6 @@ const reg_button = async () =>{
             }
             else
                 alert(rep.msg)
-        })
-        .catch(e =>{
-            console.log(e)
-            if(e.code == 'ECONNABORTED'){
-                alert('请求超时')
-            }
         })
 }
 

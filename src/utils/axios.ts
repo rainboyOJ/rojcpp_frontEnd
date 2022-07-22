@@ -43,11 +43,19 @@ api.interceptors.response.use(res => {
     // res 是所有相应的信息
     //console.log(res)
     loadingElement.removeChild(parent)
+    if(res.data.code && res.data.code == -1) {
+        alert(res.data.msg)
+        return;
+    }
    return Promise.resolve(res.data)
 }, err => {
     // 服务器响应发生错误时的处理
     loadingElement.removeChild(parent)
-    console.log(err)
+    const { config, code, message } = err
+    if (code === 'ECONNABORTED' || message === 'Network Error') {
+        // 请求超时
+        alert(`请求超时`)
+    }
     Promise.reject(err)
 })
 

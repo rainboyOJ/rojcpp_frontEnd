@@ -1,5 +1,28 @@
 <script setup>
 import Card from '@/components/card.vue'
+import {api} from '@/utils/axios'
+import {ref,reactive,toRaw} from 'vue'
+import { useRouter } from 'vue-router' 
+
+const router = useRouter() //跳转主页用
+const login_data = reactive({
+    username:'',
+    password:''
+})
+
+const login_button = () => {
+    let data = toRaw(login_data)
+    console.log(data)
+    api.post('/user/login',data)
+        .then( res=> {
+            //登录成功,跳转主页
+            //console.log(res)
+            router.push({name:'Home'});
+        })
+        .catch(e=>{
+            console.log(e)
+        })
+}
 
 </script>
 <template>
@@ -27,6 +50,7 @@ import Card from '@/components/card.vue'
                                      class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                      id="username"
                                      placeholder="Email address"
+                                     v-model="login_data.username"
                                      />
                              </div>
 
@@ -38,18 +62,19 @@ import Card from '@/components/card.vue'
                                      class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                      id="password"
                                      placeholder="Password"
+                                     v-model="login_data.password"
                                      />
                              </div>
 
-                             <div class="flex justify-end items-center mb-6">
-                                 <a href="#!" class="text-gray-800 ">Forgot password?</a>
-                             </div>
+                             <!--<div class="flex justify-end items-center mb-6">-->
+                                 <!--<a href="#!" class="text-gray-800 ">Forgot password?</a>-->
+                             <!--</div>-->
 
                              <div class="flex justify-center text-center lg:text-left">
                                  <button
                                      type="button"
                                      class="button-blue mr-5"
-                                     @click=""
+                                     @click="login_button"
                                      >
                                      登录
                                  </button>
